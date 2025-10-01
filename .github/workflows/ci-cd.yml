@@ -1,6 +1,5 @@
 name: CI/CD Docker API
 
-# Cambié las branches a "master" para que funcione con tu repo actual
 on:
   push:
     branches: [ master ]
@@ -16,38 +15,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Configurar Python (para tests opcionales)
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      # 3️⃣ Construir imagen Docker
+      # 2️⃣ Construir imagen Docker
       - name: Build Docker image
         run: docker build -t breast-cancer-api .
 
-      # 4️⃣ Levantar contenedor en background
+      # 3️⃣ Levantar contenedor en background
       - name: Run Docker container
-        run: docker run -d --name test-api -p 5001:5000 breast-cancer-api
+        run: docker run -d --name test-api -p 5000:5000 breast-cancer-api
 
-      # 5️⃣ Esperar API
+      # 4️⃣ Esperar API
       - name: Wait for API
         run: sleep 10
 
-      # 6️⃣ Test GET /
+      # 5️⃣ Test GET /
       - name: Test GET /
         run: |
-          RESPONSE=$(curl --silent --write-out "%{http_code}" http://localhost:5001/ -o /tmp/response.txt)
+          RESPONSE=$(curl --silent --write-out "%{http_code}" http://localhost:5000/ -o /tmp/response.txt)
           cat /tmp/response.txt
           if [ "$RESPONSE" -ne 200 ]; then
             echo "GET / failed"
             exit 1
           fi
 
-      # 7️⃣ Test POST /predict
+      # 6️⃣ Test POST /predict
       - name: Test POST /predict
         run: |
-          RESPONSE=$(curl -s -o /tmp/predict_response.json -w "%{http_code}" -X POST http://localhost:5001/predict \
+          RESPONSE=$(curl -s -o /tmp/predict_response.json -w "%{http_code}" -X POST http://localhost:5000/predict \
             -H "Content-Type: application/json" \
             -d '{"features":[17.99,10.38,122.8,1001,0.1184,0.2776,0.3001,0.1471,0.2419,0.07871,1.095,0.9053,8.589,153.4,0.006399,0.04904,0.05373,0.01587,0.03003,0.006193,25.38,17.33,184.6,2019,0.1622,0.6656,0.7119,0.2654,0.4601,0.1189]}')
           cat /tmp/predict_response.json
@@ -56,18 +49,18 @@ jobs:
             exit 1
           fi
 
-      # 8️⃣ Detener contenedor
+      # 7️⃣ Detener contenedor
       - name: Stop Docker container
         run: docker stop test-api
 
-      # 9️⃣ Login en Docker Hub
+      # 8️⃣ Login en Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 🔟 Taggear y push Docker
+      # 9️⃣ Taggear y push Docker
       - name: Push Docker image
         run: |
           docker tag breast-cancer-api ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
