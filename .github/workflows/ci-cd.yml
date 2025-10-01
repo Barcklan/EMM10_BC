@@ -1,10 +1,11 @@
 name: CI/CD Docker API
 
+# Cambié las branches a "master" para que funcione con tu repo actual
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-test-and-deploy:
@@ -15,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Configurar Python (para tests)
+      # 2️⃣ Configurar Python (para tests opcionales)
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -73,4 +74,3 @@ jobs:
           docker tag breast-cancer-api ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${GITHUB_SHA::8}
           docker push ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/breast-cancer-api:${GITHUB_SHA::8}
-
