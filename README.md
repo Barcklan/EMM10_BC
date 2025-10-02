@@ -1,5 +1,3 @@
-# Evaluación Modular: Módulo 10
-
 # Proyecto: API de Predicción de Cáncer de Mama
 
 ## **Descripción**
