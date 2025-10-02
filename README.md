@@ -32,7 +32,7 @@ El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker*
      ```bash
      docker run -d -p 5000:5000 --name test-api breast-cancer-api
      ```
-   - Consultas de prueba usando `curl` o Postman.
+   - Consultas de prueba usando `curl`, `Postman` o con jupyter notebook importando la librerías de `requests`.
 
 4. **Integración continua y despliegue con GitHub Actions**
    - Flujo configurado en `.github/workflows/ci-cd.yml`:
