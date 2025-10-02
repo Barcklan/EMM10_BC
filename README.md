@@ -48,13 +48,21 @@ El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker*
 ## **Estructura del repositorio**
 
 EMM10_BC/
+
 ├─ .github/workflows/ci-cd.yml   # Flujo CI/CD
+
 ├─ app.py                        # API Flask
+
 ├─ breast_cancer_model.pkl       # Modelo entrenado
+
 ├─ Dockerfile                    # Instrucciones para construir la imagen Docker
+
 ├─ requirements.txt              # Librerías necesarias
+
 ├─ .gitignore                    # Archivos y carpetas ignoradas por Git
+
 ├─ img/                          # Capturas de evidencia
+
 └─ README.md                     # Documentación
 
 ---
