@@ -9,7 +9,7 @@ Este proyecto implementa una **API REST** para la predicción de cáncer de mama
 Además, el proyecto tiene **integración continua y despliegue continuo (CI/CD)** configurada con **GitHub Actions** y **Docker**, incluyendo pruebas automáticas de los endpoints y despliegue a Docker Hub.
 
 ---
-
+```bash
 EMM10_BC/
 
 ├── .github/
@@ -27,7 +27,7 @@ EMM10_BC/
 ├── requirements.txt # Dependencias Python
 
 └── README.md # Este archivo
-
+```
 ---
 
 ## Flujo de CI/CD
