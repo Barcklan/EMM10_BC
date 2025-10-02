@@ -128,11 +128,11 @@ En resumen, las features son los “inputs” medibles que definen la muestra y 
 Donde `prediction = 1` indica `maligno` y `0` `benigno`.
 ### *Interpretación del manejo de resultado arrojado por el modelo:*
 
-De acuerdo a lo visto en el resultado arrojado en el ejemplo anterior, el modelo nos predice que, con las características o parámetros establecidos por el cliente o el usuario interesado, el paciente tendría un tumor maligno (1) con una probabilidad del 100% (~0.999) de seguridad. Esto nos indica que el resultado no es ambigüo, sino que la clasificaciónes fuerte y clara hacia el maligno (100%).
+De acuerdo a lo visto en el resultado arrojado en el ejemplo anterior, el modelo nos predice que, con las características o parámetros establecidos por el cliente o el usuario interesado, el paciente tendría un tumor maligno (1) con una probabilidad del 100% (~0.999) de seguridad. Esto nos indica que el resultado no es ambigüo, sino que la clasificación es fuerte y clara hacia una condición maligna (100%).
 
 ## **Evidencia**
 
-* Docker instalado y funcionando.qu
+* Docker instalado y funcionando.
 
 * API Flask probada localmente.
 
