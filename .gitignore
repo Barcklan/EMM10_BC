@@ -17,7 +17,10 @@ ENV/
 # Docker
 *.log
 
+# Notebook Jupyter Checkpoints
 .ipynb_checkpoints/
 
+#Ignorar archivo Docker
+docker/
 
 
