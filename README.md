@@ -6,7 +6,7 @@ Este proyecto implementa un modelo de predicción de cáncer de mama utilizando 
 
 ## **Descripción**
 
-Este proyecto desarrolla un modelo de clasificación para predecir cáncer de mama utilizando **regresión logística** sobre el conjunto de datos de cáncer de mama en relación a tumores malignos y benignos para integrarlo dentro de la infraestructura tecnológica de la startup de salud la cual se nos solicita que este servicio sea:
+Este proyecto implementa un modelo de clasificación de cáncer de mama usando regresión logística sobre datos de tumores malignos y benignos, diseñado para integrarse en la infraestructura tecnológica de la startup de salud, cumpliendo con los requerimientos de:
 
 * **Escalable localmente mediante contenedores**
 
@@ -16,7 +16,7 @@ Este proyecto desarrolla un modelo de clasificación para predecir cáncer de ma
 
 * **Documentado y probado con CI/CD**
 
-El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker**, y se integra con **GitHub Actions** para **CI/CD** y push automático a **Docker Hub**.
+Además, el modelo se despliega como una **API usando Flask**, se empaqueta con **Docker**, y se integra con **GitHub Actions** para **CI/CD** y push automático a **Docker Hub**.
 
 ---
 
