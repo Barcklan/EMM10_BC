@@ -1,95 +1,114 @@
-# Evaluación Modular Módulo 10 - Breast Cancer Prediction API
+# Proyecto: API de Predicción de Cáncer de Mama
 
-## Descripción
-Este proyecto implementa una **API REST** para la predicción de cáncer de mama utilizando un modelo entrenado con datos de tumores malignos y benignos. La API permite:
+## **Descripción**
 
-- Testar endpoints básicos (`GET /` y `POST /predict`).
-- Realizar predicciones enviando características del tumor en formato JSON.
-
-Además, el proyecto tiene **integración continua y despliegue continuo (CI/CD)** configurada con **GitHub Actions** y **Docker**, incluyendo pruebas automáticas de los endpoints y despliegue a Docker Hub.
+Este proyecto desarrolla un modelo de clasificación para predecir cáncer de mama utilizando **regresión logística** sobre el conjunto de datos de cáncer de mama en relación a tumores malignos y benignos.  
+El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker**, y se integra con **GitHub Actions** para **CI/CD** y push automático a **Docker Hub**.
 
 ---
-```bash
+
+## **Flujo del Proyecto**
+
+1. **Entrenamiento del modelo**
+   - Se entrena un modelo de **regresión logística** usando los datos de características tumorales.
+   - El modelo entrenado se guarda en `breast_cancer_model.pkl`.
+
+2. **Despliegue local con Flask**
+   - API Flask en `app.py` con endpoints:
+     - `GET /` → prueba que la API está corriendo.
+     - `POST /predict` → recibe un JSON con las características y devuelve la predicción.
+   - Ejecutar localmente:
+     ```bash
+     python app.py
+     ```
+     y acceder a `http://localhost:5000`.
+
+3. **Empaquetado y prueba con Docker**
+   - Construir imagen Docker:
+     ```bash
+     docker build -t breast-cancer-api .
+     ```
+   - Levantar contenedor de prueba:
+     ```bash
+     docker run -d -p 5000:5000 --name test-api breast-cancer-api
+     ```
+   - Consultas de prueba usando `curl` o Postman.
+
+4. **Integración continua y despliegue con GitHub Actions**
+   - Flujo configurado en `.github/workflows/ci-cd.yml`:
+     - Ejecuta ante **push** o **pull request** a la rama `main`.
+     - Construye la imagen Docker.
+     - Levanta contenedor temporal y realiza tests de los endpoints (`GET /` y `POST /predict`).
+     - Detiene contenedor.
+     - Hace login en Docker Hub usando secretos.
+     - Taggea y sube imagen a Docker Hub (`latest` y commit hash).
+
+---
+
+## **Estructura del repositorio**
+
 EMM10_BC/
-
-├── .github/
-
-│ └── workflows/ci-cd.yml # Flujo de CI/CD
-
-├── img/ # Capturas de evidencia
-
-├── app.py # API Flask
-
-├── breast_cancer_model.pkl # Modelo entrenado
-
-├── Dockerfile # Construcción de imagen Docker
-
-├── requirements.txt # Dependencias Python
-
-└── README.md # Este archivo
-```
----
-
-## Flujo de CI/CD
-
-1. **Push a GitHub**  
-   Cada vez que se hace un push a `main` se dispara el workflow.
-
-2. **Construcción y prueba de Docker**  
-   - Construye la imagen Docker: `breast-cancer-api`
-   - Levanta un contenedor temporal
-   - Testea endpoints:
-     - `GET /` devuelve un mensaje de disponibilidad
-     - `POST /predict` devuelve predicción y probabilidades
-   - Detiene el contenedor
-
-3. **Publicación en Docker Hub**  
-   - Inicia sesión usando secretos `DOCKER_USERNAME` y `DOCKER_PASSWORD`
-   - Hace push de la imagen `latest` y con el tag del commit
+├─ .github/workflows/ci-cd.yml   # Flujo CI/CD
+├─ app.py                        # API Flask
+├─ breast_cancer_model.pkl       # Modelo entrenado
+├─ Dockerfile                    # Instrucciones para construir la imagen Docker
+├─ requirements.txt              # Librerías necesarias
+├─ .gitignore                    # Archivos y carpetas ignoradas por Git
+├─ img/                          # Capturas de evidencia
+└─ README.md                     # Documentación
 
 ---
 
-## Ejemplo de uso
+## Ejemplo de Predicción
 
-**Ejecutar contenedor localmente:**
-```bash
-docker run -d -p 5000:5000 --name breast-api barcklan/breast-cancer-api:latest
-```
-## Test GET /:
-```bash
-curl http://localhost:5000/
-```
-
-## Test POST /predict:
-```bash
-curl -X POST http://localhost:5000/predict \
-     -H "Content-Type: application/json" \
-     -d '{"features":[17.99,10.38,122.8,1001,0.1184,0.2776,0.3001,0.1471,0.2419,0.07871,1.095,0.9053,8.589,153.4,0.006399,0.04904,0.05373,0.01587,0.03003,0.006193,25.38,17.33,184.6,2019,0.1622,0.6656,0.7119,0.2654,0.4601,0.1189]}'
-```
-
-Respuesta esperada:
-```bash
+**Request POST /predict:**
+```json
 {
-  "prediction": 1,
-  "probabilities": [6.05e-09, 0.99999999]
+  "features": [14.2, 10.1, 92.3, 600, 0.1, 0.2, 0.3, 0.15, 0.2, 0.06,
+               0.9, 0.85, 7.2, 120, 0.005, 0.04, 0.05, 0.015, 0.03, 0.006,
+               20.0, 15.0, 130, 1700, 0.14, 0.55, 0.65, 0.2, 0.4, 0.11]
 }
 ```
 
+## **Respuesta Esperada**
+```json
+{
+  "prediction": 1,
+  "probabilities": [0.01, 0.99]
+}
+```
 Donde `prediction = 1` indica `maligno` y `0` `benigno`.
+
+## **Evidencia**
+
+* Docker instalado y funcionando.
+
+* API Flask probada localmente.
+
+* Entrenamiento del modelo y métricas de precisión.
+
+* Flujo CI/CD ejecutado exitosamente.
+
+* Archivos ignorados y eliminados correctamente en GitHub.
+
+* (Las capturas se encuentran en la carpeta img/)
+
+# Conclusión
+
+Este proyecto demuestra cómo pasar de un modelo de machine learning a un servicio desplegable en producción, incluyendo pruebas automáticas, CI/CD y publicación en Docker Hub.
 
 ## Requisitos
 
-`Python 3.11+`
+* `Python 3.11+`
 
-`Flask`
+* `Flask`
 
-`Docker`
+* `scikit-learn`
 
-`Acceso a Docker Hub (para CI/CD)`
+* `Docker`
 
-## Evidencias
+* `Acceso a Docker Hub (para CI/CD)`
 
-En la carpeta `img/` se encuentran capturas de la ejecución de Git, Docker y GitHub Actions, demostrando que el CI/CD funciona correctamente.
 
 ## Autor
 
