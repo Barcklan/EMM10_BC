@@ -155,7 +155,7 @@ De acuerdo a lo visto en el resultado arrojado en el ejemplo anterior, el modelo
 
 * Archivos ignorados y eliminados correctamente en GitHub.
 
-* (Las capturas se encuentran en la carpeta img/)
+* (Las capturas se encuentran en la carpeta `img/`)
 
 # Conclusión
 
