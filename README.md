@@ -10,6 +10,18 @@ Además, el proyecto tiene **integración continua y despliegue continuo (CI/CD)
 
 ---
 
+EMM10_BC/
+├── .github/
+│ └── workflows/ci-cd.yml # Flujo de CI/CD
+├── img/ # Capturas de evidencia
+├── app.py # API Flask
+├── breast_cancer_model.pkl # Modelo entrenado
+├── Dockerfile # Construcción de imagen Docker
+├── requirements.txt # Dependencias Python
+└── README.md # Este archivo
+
+---
+
 ## Flujo de CI/CD
 
 1. **Push a GitHub**  
