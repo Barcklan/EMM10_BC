@@ -1,4 +1,4 @@
-# EMM10_BC - Breast Cancer Prediction API
+# Evaluación Modular Módulo 10 - Breast Cancer Prediction API
 
 ## Descripción
 Este proyecto implementa una **API REST** para la predicción de cáncer de mama utilizando un modelo entrenado con datos de tumores malignos y benignos. La API permite:
