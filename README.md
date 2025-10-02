@@ -10,13 +10,27 @@ Además, el proyecto tiene **integración continua y despliegue continuo (CI/CD)
 
 ---
 
-## Estructura del proyecto
-EMM10_BC/
-├── .github/
-│ └── workflows/ci-cd.yml # Flujo de CI/CD
-├── img/ # Capturas de evidencia
-├── app.py # API Flask
-├── breast_cancer_model.pkl # Modelo entrenado
-├── Dockerfile # Construcción de imagen Docker
-├── requirements.txt # Dependencias Python
-└── README.md # Este archivo
+## Flujo de CI/CD
+
+1. **Push a GitHub**  
+   Cada vez que se hace un push a `main` se dispara el workflow.
+
+2. **Construcción y prueba de Docker**  
+   - Construye la imagen Docker: `breast-cancer-api`
+   - Levanta un contenedor temporal
+   - Testea endpoints:
+     - `GET /` devuelve un mensaje de disponibilidad
+     - `POST /predict` devuelve predicción y probabilidades
+   - Detiene el contenedor
+
+3. **Publicación en Docker Hub**  
+   - Inicia sesión usando secretos `DOCKER_USERNAME` y `DOCKER_PASSWORD`
+   - Hace push de la imagen `latest` y con el tag del commit
+
+---
+
+## Ejemplo de uso
+
+**Ejecutar contenedor localmente:**
+```bash
+docker run -d -p 5000:5000 --name breast-api barcklan/breast-cancer-api:latest
