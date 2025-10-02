@@ -6,7 +6,7 @@ Este proyecto implementa un modelo de predicción de cáncer de mama utilizando 
 
 ## **Descripción**
 
-Este proyecto implementa un modelo de clasificación de cáncer de mama usando regresión logística sobre datos de tumores malignos y benignos, diseñado para integrarse en la infraestructura tecnológica de la startup de salud, cumpliendo con los requerimientos de:
+Este proyecto implementa un modelo de clasificación de cáncer de mama usando regresión logística sobre datos de tumores malignos y benignos, diseñado para integrarse en la infraestructura tecnológica de la startup de salud, cumpliendo con los requerimientos de que sea:
 
 * **Escalable localmente mediante contenedores**
 
