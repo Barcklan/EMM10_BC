@@ -47,6 +47,7 @@ El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker*
 
 ## **Estructura del repositorio**
 
+```bash
 EMM10_BC/
 
 ├─ .github/workflows/ci-cd.yml   # Flujo CI/CD
@@ -64,6 +65,7 @@ EMM10_BC/
 ├─ img/                          # Capturas de evidencia
 
 └─ README.md                     # Documentación
+```
 
 ---
 
