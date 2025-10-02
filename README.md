@@ -69,29 +69,69 @@ EMM10_BC/
 
 ---
 
-## Ejemplo de Predicción
+## Ejemplo de Predicción con `features` como parámetros
 
 **Request POST /predict:**
 ```json
 {
-  "features": [14.2, 10.1, 92.3, 600, 0.1, 0.2, 0.3, 0.15, 0.2, 0.06,
-               0.9, 0.85, 7.2, 120, 0.005, 0.04, 0.05, 0.015, 0.03, 0.006,
-               20.0, 15.0, 130, 1700, 0.14, 0.55, 0.65, 0.2, 0.4, 0.11]
+  "features":[17.99,10.38,122.8,1001,0.1184,0.2776,0.3001,0.1471,
+                0.2419,0.07871,1.095,0.9053,8.589,153.4,0.006399,
+                0.04904,0.05373,0.01587,0.03003,0.006193,
+                25.38,17.33,184.6,2019,0.1622,0.6656,0.7119,
+                0.2654,0.4601,0.1189]
 }
 ```
+Las features son las variables de entrada que el modelo usa para hacer predicciones. Cada feature representa un atributo medido o calculado sobre cada muestra (paciente o tumor, en este caso).
+
+Una muestra pequeña de las variables del dataset de cáncer de mama de Wisconsin, incluyen medidas extraídas de imágenes de tumores:
+
+* `radius_mean`: radio promedio del tumor
+
+* `texture_mean`: textura promedio
+
+* `perimeter_mean`: perímetro promedio
+
+* `area_mean`: área promedio
+
+* `smoothness_mean`: suavidad promedio
+
+* `compactness_mean`: compacidad promedio
+
+* `concavity_mean`: concavidad promedio
+
+* `concave points_mean`: puntos cóncavos promedio
+
+* `symmetry_mean`: simetría promedio
+
+* `fractal_dimension_mean`: dimensión fractal promedio
+
+Y hay más features que incluyen medidas de error estándar y valores “worst” (peores) de esas mismas métricas.
+
+Cada valor corresponde a una de esas variables en el mismo orden que fueron usadas para entrenar el modelo.
+
+El modelo toma todos estos valores y calcula:
+
+`prediction: 0 = benigno, 1 = maligno`
+
+`probabilities`: probabilidad de cada clase según el modelo
+
+En resumen, las features son los “inputs” medibles que definen la muestra y que el modelo necesita para hacer su predicción.
 
 ## **Respuesta Esperada**
 ```json
 {
   "prediction": 1,
-  "probabilities": [0.01, 0.99]
+  "probabilities": [6.0584655070528015e-09, 0.9999999939415345]
 }
 ```
 Donde `prediction = 1` indica `maligno` y `0` `benigno`.
+### *Interpretación del manejo de resultado arrojado por el modelo:*
+
+El modelo nos predice que, con las características o parámetros establecidos por el cliente o el usuario interesado, el paciente tendría un tumor maligno (1) con una probabilidad del 100% (~0.999) de seguridad. Esto nos indica que el resultado no es ambigüo, sino que la clasificaciónes fuerte y clara hacia el maligno (100%).
 
 ## **Evidencia**
 
-* Docker instalado y funcionando.
+* Docker instalado y funcionando.qu
 
 * API Flask probada localmente.
 
