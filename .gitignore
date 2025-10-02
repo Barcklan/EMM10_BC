@@ -21,6 +21,6 @@ ENV/
 .ipynb_checkpoints/
 
 #Ignorar archivo Docker
-docker/
+docker
 
 
