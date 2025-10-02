@@ -105,7 +105,21 @@ Donde `prediction = 1` indica `maligno` y `0` `benigno`.
 
 # Conclusión
 
-Este proyecto demuestra cómo pasar de un modelo de machine learning a un servicio desplegable en producción, incluyendo pruebas automáticas, CI/CD y publicación en Docker Hub.
+## Conclusión
+
+Este proyecto entrega un **modelo de predicción de cáncer de mama funcional** y listo para integrarse en la infraestructura tecnológica de startups de salud.  
+
+Gracias al despliegue mediante **API REST con Flask** y la **contenedorización con Docker**, el servicio ofrece:
+
+- **Escalabilidad local**: se puede replicar fácilmente en múltiples contenedores para soportar más tráfico o distintas instancias del servicio.
+  
+- **Facilidad de actualización**: nuevas versiones del modelo o cambios en la API pueden implementarse sin interrumpir el servicio, aprovechando CI/CD.
+
+- **Acceso vía REST**: permite integración directa con otras aplicaciones, portales de pacientes o sistemas internos de salud.
+
+- **Documentación y pruebas automatizadas**: con GitHub Actions, se asegura que cada cambio sea testeado y que la API funcione correctamente antes de actualizar Docker Hub.  
+
+En resumen, este proyecto demuestra cómo un **modelo de machine learning** puede transformarse en un **servicio confiable, escalable y listo para producción**, cumpliendo con los estándares que requiere una startup de salud para integrar capacidades de predicción dentro de su ecosistema tecnológico.
 
 ## Requisitos
 
