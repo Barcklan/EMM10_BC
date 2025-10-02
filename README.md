@@ -17,10 +17,15 @@ EMM10_BC/
 │ └── workflows/ci-cd.yml # Flujo de CI/CD
 
 ├── img/ # Capturas de evidencia
+
 ├── app.py # API Flask
+
 ├── breast_cancer_model.pkl # Modelo entrenado
+
 ├── Dockerfile # Construcción de imagen Docker
+
 ├── requirements.txt # Dependencias Python
+
 └── README.md # Este archivo
 
 ---
