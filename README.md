@@ -11,6 +11,7 @@ Además, el proyecto tiene **integración continua y despliegue continuo (CI/CD)
 ---
 
 EMM10_BC/
+
 ├── .github/
 │ └── workflows/ci-cd.yml # Flujo de CI/CD
 ├── img/ # Capturas de evidencia
