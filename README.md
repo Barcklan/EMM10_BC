@@ -1,8 +1,21 @@
 # Proyecto: API de Predicción de Cáncer de Mama
 
+# Introducción
+
+Este proyecto implementa un modelo de predicción de cáncer de mama utilizando Regresión Logística entrenado con el dataset de Wisconsin. El modelo se despliega como una API REST con Flask, y está empaquetado en Docker para facilitar su escalabilidad y portabilidad. Además, se automatiza el flujo de CI/CD con GitHub Actions, asegurando pruebas automáticas y despliegue confiable de la imagen Docker a Docker Hub.
+
 ## **Descripción**
 
-Este proyecto desarrolla un modelo de clasificación para predecir cáncer de mama utilizando **regresión logística** sobre el conjunto de datos de cáncer de mama en relación a tumores malignos y benignos.  
+Este proyecto desarrolla un modelo de clasificación para predecir cáncer de mama utilizando **regresión logística** sobre el conjunto de datos de cáncer de mama en relación a tumores malignos y benignos para integrarlo dentro de la infraestructura tecnológica de la startup de salud la cual se nos solicita que este servicio sea:
+
+* **Escalable localmente mediante contenedores**
+
+* **Fácil de actualizar**
+
+* **Accesible vía REST**
+
+* **Documentado y probado con CI/CD**
+
 El modelo se despliega como una **API usando Flask**, se empaqueta con **Docker**, y se integra con **GitHub Actions** para **CI/CD** y push automático a **Docker Hub**.
 
 ---
@@ -145,8 +158,6 @@ De acuerdo a lo visto en el resultado arrojado en el ejemplo anterior, el modelo
 * (Las capturas se encuentran en la carpeta img/)
 
 # Conclusión
-
-## Conclusión
 
 Este proyecto entrega un **modelo de predicción de cáncer de mama funcional** y listo para integrarse en la infraestructura tecnológica de startups de salud.  
 
